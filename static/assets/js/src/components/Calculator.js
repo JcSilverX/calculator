@@ -138,6 +138,8 @@ export default class Calculator extends BaseComponent {
 
         const instance = Calculator.getOrCreateInstance(calculator);
 
+        event.preventDefault();
+        
         if (this.hasAttribute('data-jsx-number') || this.hasAttribute('data-jsx-point')) {
             const value = this.dataset.jsxNumber || this.dataset.jsxPoint;
 
