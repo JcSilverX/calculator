@@ -11,6 +11,8 @@ const EVENT_LOAD = 'load';
 
 const SELECTOR_DATA_VALUE = '[data-jsx-number], [data-jsx-point], [data-jsx-operator], [data-jsx-equals], [data-jsx-clear], [data-jsx-delete]';
 
+const MAX_LENGTH = 9;
+
 const Default = {
     keyboard: true
 };
@@ -48,8 +50,7 @@ export default class Calculator extends BaseComponent {
 
     // private methods
     _append(v) {
-
-        if (v === '.' && this._currentOperand.includes('.')) return;
+        if ((v === '.' && this._currentOperand.includes('.')) || this._currentOperand.length >= MAX_LENGTH) return;
 
         this._currentOperand += v.toString();
     }
