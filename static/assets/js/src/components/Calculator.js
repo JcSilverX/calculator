@@ -80,12 +80,20 @@ export default class Calculator extends BaseComponent {
     }
 
     _displayToScreen(num) {
-        const sNum = num.toString();
-        const integerPart = parseFloat(sNum.split('.')[0]);
-        const fractionalPart = sNum.split('.')[1];
+        const integerPart = parseFloat(num.toString().split('.')[0]);
+        const fractionalPart = num.toString().split('.')[1];
 
-        this._result = isNaN(integerPart) ? ' ' : integerPart.toLocaleString('en', { maximumFractionDigits: 0 } );
-        return (fractionalPart != null) ? `${this._result}.${fractionalPart}` : this._result;
+        if (num === 'Error') {
+            this._result = num;
+        }
+        else if (isNaN(integerPart)) {
+            this._result = '0';
+        }
+        else {
+            this._result = integerPart.toLocaleString('en', { maximumFractionDigits: 0 } );
+        }
+
+        return fractionalPart != null ? `${this._result}.${fractionalPart}` : this._result;
     }
 
     _update() {
