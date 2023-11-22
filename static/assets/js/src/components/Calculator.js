@@ -75,15 +75,15 @@ export default class Calculator extends BaseComponent {
         this._ans = math(prev, curr);
 
         if (this._ans.toString().length > MAX_LENGTH) {
-            this._integerParth = this._ans.toExponential(5).split('.')[0];
-            this._fractionalPart = this._ans.toExponential(5).split('.')[1];
+            const integerPart = this._ans.toExponential(5).split('.')[0];
+            const fractionalPart = this._ans.toExponential(5).split('.')[1];
 
-            if (this._fractionalPart.startsWith('0')) {
-                this._ans = this._integerParth + this._fractionalPart.split('0').join('');
-            } else if (this._fractionalPart.split('e')[0].endsWith('0')) {
-                this._ans = this._integerParth + '.' + this._fractionalPart.split('0').join('');
+            if (fractionalPart.startsWith('0')) {
+                this._ans = integerPart + fractionalPart.split('0').join('');
+            } else if (fractionalPart.split('e')[0].endsWith('0')) {
+                this._ans = integerPart + '.' + fractionalPart.split('0').join('');
             } else {
-                this._ans = this._integerParth + '.' + this._fractionalPart;
+                this._ans = integerPart + '.' + fractionalPart;
             }
         }
 
@@ -97,7 +97,7 @@ export default class Calculator extends BaseComponent {
             return num;
         } 
         const integerPart = parseFloat(num.toString().split('.')[0]);
-        const fractionalPart = num.toString().split('.')[1];;
+        const fractionalPart = num.toString().split('.')[1];
 
         if (num === 'Error') {
             this._result = num;
