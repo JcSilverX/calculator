@@ -74,6 +74,8 @@ export default class Calculator extends BaseComponent {
         
         const ans = math(prev, curr);
 
+        console.log('>>> ans ', ans);
+
         this._currentOperand = ans;
         this._previousOperand = ' ';
         this._operation = undefined;
@@ -159,7 +161,7 @@ export default class Calculator extends BaseComponent {
 
         event.preventDefault();
 
-        if (event.key >= 0 && event.key <= 9) {
+        if ((event.key >= 0 && event.key <= 9) || event.key === '.') {
             instance._append(event.key);
             instance._update();
         }
