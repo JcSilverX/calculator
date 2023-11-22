@@ -72,18 +72,32 @@ export default class Calculator extends BaseComponent {
 
         const math = opts[this._operation];
         
-        const ans = math(prev, curr);
+        this._ans = math(prev, curr);
 
-        console.log('>>> ans ', ans);
+        if (this._ans.toString().length > MAX_LENGTH) {
+            this._integerParth = this._ans.toExponential(5).split('.')[0];
+            this._fractionalPart = this._ans.toExponential(5).split('.')[1];
 
-        this._currentOperand = ans;
+            if (this._fractionalPart.startsWith('0')) {
+                this._ans = this._integerParth + this._fractionalPart.split('0').join('');
+            } else if (this._fractionalPart.split('e')[0].endsWith('0')) {
+                this._ans = this._integerParth + '.' + this._fractionalPart.split('0').join('');
+            } else {
+                this._ans = this._integerParth + '.' + this._fractionalPart;
+            }
+        }
+
+        this._currentOperand = this._ans;
         this._previousOperand = ' ';
         this._operation = undefined;
     }
 
     _displayToScreen(num) {
+        if (num.toString().includes('e')) {
+            return num;
+        } 
         const integerPart = parseFloat(num.toString().split('.')[0]);
-        const fractionalPart = num.toString().split('.')[1];
+        const fractionalPart = num.toString().split('.')[1];;
 
         if (num === 'Error') {
             this._result = num;
