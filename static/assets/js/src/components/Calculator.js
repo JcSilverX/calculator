@@ -94,7 +94,7 @@ export default class Calculator extends BaseComponent {
 
     _displayToScreen(num) {
         if (num.toString().includes('e')) {
-            return num;
+            return num.toString().split('+').join('');
         } 
         const integerPart = parseFloat(num.toString().split('.')[0]);
         const fractionalPart = num.toString().split('.')[1];
