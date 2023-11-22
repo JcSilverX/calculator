@@ -50,7 +50,7 @@ export default class Calculator extends BaseComponent {
 
     // private methods
     _append(v) {
-        if ((v === '.' && this._currentOperand.includes('.')) || this._currentOperand.length >= MAX_LENGTH) return;
+        if ((v === '.' && this._currentOperand.includes('.')) || this._currentOperand.length > MAX_LENGTH) return;
 
         this._currentOperand += v.toString();
     }
