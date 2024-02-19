@@ -13,7 +13,7 @@
     CalculatorX
 </p>
 
-<p align="center">=')</p>
+<p align="center">='P</p>
 
 ## calculatorX
 - [calculatorX](https://jcsilverx.github.io/calculator/) - ```LIVE Demo```
